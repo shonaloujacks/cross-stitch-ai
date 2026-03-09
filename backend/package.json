@@ -25,6 +25,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.78.0"
+    "@anthropic-ai/sdk": "^0.78.0",
+    "cors": "^2.8.6"
   }
 }
