@@ -9,5 +9,5 @@ export type Pattern = {
   width: number;
   height: number;
   palette: PaletteColor[];
-  grid: number[][];
+  grid: number[][]; // an array of arrays of numbers
 };
