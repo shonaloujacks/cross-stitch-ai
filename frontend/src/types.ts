@@ -11,3 +11,10 @@ export type Pattern = {
   palette: PaletteColor[];
   grid: number[][]; // an array of arrays of numbers
 };
+
+export type PromptFields = {
+  prompt: string;
+  width: number;
+  height: number;
+}
+
