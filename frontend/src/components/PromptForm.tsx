@@ -1,4 +1,4 @@
-import { Box, Typography, MenuItem, Select, TextField, FormControl, InputLabel } from '@mui/material';
+import { Box, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel } from '@mui/material';
 import { useState } from 'react';
 import axios from 'axios';
 import type { Pattern } from '../types'
@@ -13,7 +13,7 @@ const PromptForm = ({ setPattern }: PromptFormProps) => {
   const [width, setWidth] = useState(20)
   const [height, setHeight] = useState(20);
 
-  const apiBaseURL = 'http://localhost:3000/api/generate'
+  const apiBaseURL = 'http://localhost:3001/api/generate'
   
   const resetStates = () => {
     setPrompt('')
@@ -89,6 +89,7 @@ const PromptForm = ({ setPattern }: PromptFormProps) => {
           <MenuItem value={80}>80</MenuItem>
           </Select>
         </FormControl>
+        <Button type="submit" variant="contained" sx={{ mt: 3}}>Generate</Button>
       </form>
     </Box>
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import type { Pattern } from './types';
 import PromptForm from './components/PromptForm';
+import PatternGrid from './components/PatternGrid';
 
 
 const App = () => {
@@ -24,7 +25,12 @@ const App = () => {
       </AppBar>
 
       <Routes>
-        <Route path='/' element={<PromptForm setPattern={setPattern}/>}/>
+        <Route path='/' element={ 
+          <>
+            {pattern && <PatternGrid pattern={pattern} /> }
+            <PromptForm setPattern={setPattern}/> 
+          </> 
+        } />
         <Route path='/about' element/>
       </Routes>
     </Router>
