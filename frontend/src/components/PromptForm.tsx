@@ -1,14 +1,16 @@
 import { Box, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel } from '@mui/material';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import type { Pattern } from '../types'
 
 interface PromptFormProps {
-  setPattern: React.Dispatch<React.SetStateAction<Pattern | null>>
+  setPattern: React.Dispatch<React.SetStateAction<Pattern | null>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  notify: (message: string, type: "error" | "success") => void;
 }
 
 
-const PromptForm = ({ setPattern }: PromptFormProps) => {
+const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
   const [prompt, setPrompt] = useState('');
   const [width, setWidth] = useState(20)
   const [height, setHeight] = useState(20);
@@ -27,18 +29,27 @@ const PromptForm = ({ setPattern }: PromptFormProps) => {
     const promptDetails = {
       prompt, height, width
     }
-
+    setIsLoading(true);
+    
     try {
     const { data } = await axios.post<Pattern>(`${apiBaseURL}/`, promptDetails)
-    setPattern(data)
+    setPattern(data);
+    setIsLoading(false);
     resetStates();
     }
     catch (error: unknown) {
+      setIsLoading(false);
+
       if (axios.isAxiosError(error)) {
-        if (error?.response?.data && typeof error?.response.data === 'string') {
+        if (error?.response?.data && typeof error?.response?.data === 'string') {
           const message = error.response.data.replace('Something went wrong. Error:', '')
-          console.log(message, error)
+          notify(message, 'error')
         }
+      }
+      else if (error instanceof Error){
+        notify(error.message, 'error')
+      } else {
+        notify('An unexpected error occured', 'error')
       }
     }
   };
@@ -92,8 +103,6 @@ const PromptForm = ({ setPattern }: PromptFormProps) => {
         <Button type="submit" variant="contained" sx={{ mt: 3}}>Generate</Button>
       </form>
     </Box>
-
-// 20, 30, 40, 50, 60, 70, 80
   );
 };
 

@@ -1,18 +1,29 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';   
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Button, Box, CircularProgress } from "@mui/material";
 import type { Pattern } from './types';
 import PromptForm from './components/PromptForm';
 import PatternGrid from './components/PatternGrid';
+import NotificationBanner from './components/NotificationBanner';
 
 
 const App = () => {
-  const [pattern, setPattern] = useState<Pattern | null >(null)
+  const [pattern, setPattern] = useState<Pattern | null >(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [notification, setNotification] = useState<{ message: string, type: 'error' | 'success' | ''}>({ message: '', type: ''})
+
+  const notify = (message: string, type: 'error' | 'success') => {
+      setNotification({ message: message, type: type })
+      setTimeout(() => {
+        setNotification({ message: '', type: '' })
+      }, 5000);
+  }
 
 
   return (
     <Router>
       <AppBar position="static" sx={{ backgroundColor: "primary", color: "white" }}>
+        {notification.message && <NotificationBanner notification={notification}/>} 
         <Toolbar>
            <Box sx={{ border: '2px dashed white', px: 1.5, py: 0.5, borderRadius: 1, mr: 2, fontSize: 25 }}>
             CrossStitch Ai
@@ -27,8 +38,9 @@ const App = () => {
       <Routes>
         <Route path='/' element={ 
           <>
-            {pattern && <PatternGrid pattern={pattern} /> }
-            <PromptForm setPattern={setPattern}/> 
+            {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', p: 3}}><CircularProgress/></Box>)}
+            {pattern && !isLoading && <PatternGrid pattern={pattern} /> }
+            <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/> 
           </> 
         } />
         <Route path='/about' element/>
