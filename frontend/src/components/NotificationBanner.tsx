@@ -1,4 +1,4 @@
-import { Typography, Alert} from "@mui/material"
+import { Alert} from "@mui/material"
 interface NotificationProps {
   notification: {message: string, type: 'error' | 'success' | ''}
 }

@@ -2,6 +2,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
     "axios": "^1.13.6",
-    "cors": "^2.8.6"
+    "cors": "^2.8.6",
+    "dmc": "^1.5.2"
   }
 }

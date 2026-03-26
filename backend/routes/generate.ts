@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import sharp from 'sharp';
 import quantize from 'quantize';
 import axios from 'axios';
+import dmcColors from '../data/dmc.json'
 
 const router = express.Router();
 const client = new OpenAI({
