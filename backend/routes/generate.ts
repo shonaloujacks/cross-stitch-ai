@@ -2,7 +2,6 @@ import express from 'express';
 import OpenAI from 'openai';
 import sharp from 'sharp';
 import quantize from 'quantize';
-import axios from 'axios';
 import dmcColors from '../data/dmc.json'
 
 const router = express.Router();
@@ -10,25 +9,40 @@ const client = new OpenAI({
   apiKey: process.env['OPENAI_API_KEY']
 });
 
+const findNearestDMC = (r: number, g: number, b: number) => {
+  let nearest = dmcColors[0]!
+  let minDistance = Infinity
+
+  for (const color of dmcColors) {
+    const distance = Math.sqrt(
+      (r - color.r) ** 2 + (g - color.g) ** 2 + (b - color.b) ** 2
+    )
+    if (distance < minDistance) {
+      minDistance = distance
+      nearest = color
+    }
+  }
+  return nearest;
+ }
+
 router.post('/', async (req, res) => {
   console.log('request received', req.body)
   const { prompt, height, width } = req.body
   
 
  const imageResponse = await client.images.generate({
-  model: 'dall-e-3',
-  prompt: `Flat, cartoon-style illustration of ${prompt}, plain white background, maximum color saturation, no gradients, no shading, high contrast between all elements, centered`,
+  model: 'gpt-image-1',
+  quality: 'medium',
+  prompt: `A flat, graphic illustration of ${prompt}. Bold solid color fills with subject centred. No decorative borders, no color swatches, no palette strips, no labels, no annotations`,
   n: 1,
   size: '1024x1024'
  });
 
- const imageURL = imageResponse.data?.[0]?.url;
- if (!imageURL) throw new Error('DALL-E did not return an image URL');
- console.log('this is imageURL', imageURL)
+ const b64 = imageResponse.data?.[0]?.b64_json;
+ if (!b64) throw new Error('gpt-image-1 did not return image data');
+ console.log('usage', JSON.stringify(imageResponse.usage))
 
- const response = await fetch(imageURL);
- const buffer = Buffer.from(await response.arrayBuffer());
- 
+const buffer = Buffer.from(b64, 'base64'); 
                   
 const { data } = await sharp(buffer)                                                                                                    
   .resize(width, height, { fit: 'cover', kernel: sharp.kernel.nearest })
@@ -43,16 +57,20 @@ const { data } = await sharp(buffer)
   pixels.push([data[i] as number, data[i+1] as number, data[i+2] as number ])
  }
 
- const colorCount = (width < 40 || height < 40) ? 6 : 12;
+ const colorCount = (width < 40 || height < 40) ? 8 : 12;
  const colorMap = quantize(pixels, colorCount);
  if (!colorMap) throw new Error('Quantization failed');
- const palette = colorMap.palette(); 
+ const palette = colorMap.palette();
 
- const patternPalette = palette.map((rgb, i) => ({
-  color: `#${rgb[0].toString(16).padStart(2,'0')}${rgb[1].toString(16).padStart(2,'0')}${rgb[2].toString(16).padStart(2,'0')}`,
-  symbol: String.fromCharCode(65 + i),
-  name: `Color ${i + 1}`,
- }))
+ const patternPalette = palette.map((rgb, i) => {
+    const dmc = findNearestDMC(rgb[0], rgb[1], rgb[2])
+    return {
+      color: `#${rgb[0].toString(16).padStart(2,'0')}${rgb[1].toString(16).padStart(2,'0')}${rgb[2].toString(16).padStart(2,'0')}`,
+      symbol: String.fromCharCode(65 + i),
+      name: dmc.description,
+      dmcNumber: dmc.floss,
+    }
+ })
 
  console.log('this is patternPalette', patternPalette)
 
@@ -74,7 +92,7 @@ const { data } = await sharp(buffer)
    width,
    height,
    palette: patternPalette,
-   grid,
+   grid
  });
 
  console.log('THIS IS RES.JSON', res.json)
