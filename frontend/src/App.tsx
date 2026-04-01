@@ -16,7 +16,7 @@ const App = () => {
       setNotification({ message: message, type: type })
       setTimeout(() => {
         setNotification({ message: '', type: '' })
-      }, 5000);
+      }, 10000);
   }
 
 

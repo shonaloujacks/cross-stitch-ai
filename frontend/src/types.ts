@@ -2,6 +2,7 @@ export type PaletteColor = {
   color: string;
   symbol: string;
   name: string;
+  dmcNumber: string;
 };
 
 export type Pattern = {

@@ -1,4 +1,4 @@
-import { Box, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel } from '@mui/material';
+import { Box, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
 import React, { useState } from 'react';
 import axios from 'axios';
 import type { Pattern } from '../types'
@@ -14,6 +14,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
   const [prompt, setPrompt] = useState('');
   const [width, setWidth] = useState(20)
   const [height, setHeight] = useState(20);
+  const [whiteBackground, setWhiteBackground] = useState(false);
 
   const apiBaseURL = 'http://localhost:3001/api/generate'
   
@@ -21,13 +22,17 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
     setPrompt('')
     setWidth(20)
     setHeight(20)
+    setWhiteBackground(false)
+  
   }
 
   const handleGenerate = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const finalPrompt = whiteBackground ? prompt + ' on a plain white #ffffff background' : prompt
+
     const promptDetails = {
-      prompt, height, width
+      finalPrompt, height, width
     }
     setIsLoading(true);
     
@@ -37,20 +42,17 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
     setIsLoading(false);
     resetStates();
     }
-    catch (error: unknown) {
+    catch (error: any) {
       setIsLoading(false);
-
       if (axios.isAxiosError(error)) {
-        if (error?.response?.data && typeof error?.response?.data === 'string') {
-          const message = error.response.data.replace('Something went wrong. Error:', '')
-          notify(message, 'error')
-        }
-      }
-      else if (error instanceof Error){
+        const data = error.response?.data;
+        notify(data.message.replace(/^\d{3}\s/, ''), 'error')
+      } else if (error instanceof Error){
         notify(error.message, 'error')
       } else {
         notify('An unexpected error occured', 'error')
       }
+      resetStates();
     }
   };
 
@@ -63,8 +65,8 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
         variant="standard"
         required
         sx={{ display: 'block', mb: 2}}
-        slotProps={{ htmlInput: { maxLength: 100}}}
-        label="prompt (max 100 characters)"
+        slotProps={{ htmlInput: { maxLength: 300}}}
+        label="prompt (max 300 characters)"
         value={prompt}
         onChange={event => setPrompt(event.target.value)}
         />
@@ -99,6 +101,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
           <MenuItem value={70}>70</MenuItem>
           <MenuItem value={80}>80</MenuItem>
           </Select>
+          <FormControlLabel control={<Checkbox checked={whiteBackground} onChange={event => setWhiteBackground(event.target.checked)}/>} label="Set white background"/>
         </FormControl>
         <Button type="submit" variant="contained" sx={{ mt: 3}}>Generate</Button>
       </form>

@@ -32,8 +32,8 @@ return (
       <div>
       Colour key:
       <ul style={{ listStyleType: 'none', padding: 0}}>
-      {pattern.palette.map((palette) => (
-        <li key={palette.symbol} style={{ display: 'flex', alignItems: 'center', gap: 8}}>
+      {pattern.palette.map((palette, i) => (
+        <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 8}}>
           <div style={{
             width: 20,
             height: 20,
@@ -45,7 +45,7 @@ return (
           }}>
             {palette.symbol}
           </div> 
-          {palette.name}, {palette.color}
+          {palette.name}, DMC: {palette.dmcNumber}
         </li>
        ))} 
         </ul>
