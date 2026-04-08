@@ -5,6 +5,7 @@ import type { Pattern } from './types';
 import PromptForm from './components/PromptForm';
 import PatternGrid from './components/PatternGrid';
 import NotificationBanner from './components/NotificationBanner';
+import HeroSection from './components/HeroSection';
 
 
 const App = () => {
@@ -22,10 +23,10 @@ const App = () => {
 
   return (
     <Router>
-      <AppBar position="static" sx={{ backgroundColor: "primary", color: "white" }}>
+      <AppBar position="sticky" sx={{ backgroundColor: "primary", color: "white" }}>
         {notification.message && <NotificationBanner notification={notification}/>} 
         <Toolbar>
-           <Box sx={{ border: '2px dashed white', px: 1.5, py: 0.5, borderRadius: 1, mr: 2, fontSize: 25 }}>
+           <Box sx={{ border: '2px dashed white', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 2, fontSize: 25 }}>
             CrossStitch Ai
            </Box>
            <Box>
@@ -36,12 +37,13 @@ const App = () => {
       </AppBar>
 
       <Routes>
-        <Route path='/' element={ 
+        <Route path='/' element={
           <>
+            <HeroSection />
             {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', p: 3}}><CircularProgress/></Box>)}
             {pattern && !isLoading && <PatternGrid pattern={pattern} /> }
-            <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/> 
-          </> 
+            <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/>
+          </>
         } />
         <Route path='/about' element/>
       </Routes>
