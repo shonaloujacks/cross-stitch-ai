@@ -1,7 +1,8 @@
-import { Box, Paper, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
+import { Paper, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
 import React, { useState } from 'react';
 import axios from 'axios';
 import type { Pattern } from '../types'
+import { useNavigate } from 'react-router';
 
 interface PromptFormProps {
   setPattern: React.Dispatch<React.SetStateAction<Pattern | null>>;
@@ -17,6 +18,8 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
   const [whiteBackground, setWhiteBackground] = useState(false);
 
   const apiBaseURL = 'http://localhost:3001/api/generate'
+
+  const navigate = useNavigate()
   
   const resetStates = () => {
     setPrompt('')
@@ -39,6 +42,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
     try {
     const { data } = await axios.post<Pattern>(`${apiBaseURL}/`, promptDetails)
     setPattern(data);
+    navigate('/')
     setIsLoading(false);
     resetStates();
     }
@@ -68,6 +72,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
           slotProps={{ htmlInput: { maxLength: 300}}}
           label="prompt (max 300 characters)"
           value={prompt}
+          id="prompt-form"
           onChange={event => setPrompt(event.target.value)}
           />
           <FormControl fullWidth variant="standard" sx={{ '& .MuiSelect-select': { color: 'rgba(0, 0, 0, 0.6)' } }}>
@@ -103,7 +108,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
             </Select>
             <FormControlLabel control={<Checkbox checked={whiteBackground} onChange={event => setWhiteBackground(event.target.checked)}/>} label="Set white background"/>
           </FormControl>
-          <Button type="submit" variant="contained" sx={{ mt: 3}}>Generate</Button>
+          <Button type="submit" variant="contained" sx={{ mt: 3, color: '#ffffff'}}>Generate</Button>
         </form>
       </Paper>
   );

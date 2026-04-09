@@ -16,11 +16,6 @@ const NotificationBanner = ({notification}: NotificationProps) => {
       <Alert severity="success">{notification.message}</Alert>}
 
   </div>
- 
-
-    
-
-
 
   )
 }
