@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 
 interface PatternGridProp {
   pattern: Pattern;
-  setPattern: React.Dispatch<React.SetStateAction<Pattern | null>>;
 };
 
   const downloadPattern = (pattern: Pattern) => {
@@ -97,7 +96,7 @@ interface PatternGridProp {
   };
 
 
-const PatternGrid = ({ pattern, setPattern }: PatternGridProp) => {
+const PatternGrid = ({ pattern }: PatternGridProp) => {
 
   console.log('this is pattern',pattern)
 

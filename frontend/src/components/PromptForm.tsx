@@ -1,8 +1,8 @@
-import { Paper, Typography, MenuItem, Button, Select, TextField, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
+import { Paper, Link, Typography, Box, MenuItem, Button, Select, TextField, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
 import React, { useState } from 'react';
 import axios from 'axios';
 import type { Pattern } from '../types'
-import { useNavigate } from 'react-router';
+import { useNavigate, Link as RouterLink } from 'react-router';
 
 interface PromptFormProps {
   setPattern: React.Dispatch<React.SetStateAction<Pattern | null>>;
@@ -63,7 +63,11 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
   return (
 
       <Paper elevation={3} sx={{ p: 2, mt: 1, maxWidth: 600, mx: 'auto'}}>
-        <Typography variant="h5">Describe the cross-stitch pattern you want to generate</Typography>
+        <Typography variant="h5" color='#88c4a8d5' sx={{ letterSpacing: 2}}>describe the pattern you want to generate</Typography>
+        <Box sx={{ borderBottom: '2px dashed #88c4a8d5'}}>
+          <Typography color='#666666' sx={{ mt: 1.5, mb: 2}}>before you begin, <Link component={RouterLink} to='/guidance' underline='none' sx={{ color: '#88c4a8d5', fontWeight: 'bold', '&:hover': { color: '#666666'}}}>learn how to structure prompts</Link> to get the best output</Typography>
+        </Box>
+        
         <form onSubmit={handleGenerate}>
           <TextField
           variant="standard"
@@ -76,7 +80,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
           onChange={event => setPrompt(event.target.value)}
           />
           <FormControl fullWidth variant="standard" sx={{ '& .MuiSelect-select': { color: 'rgba(0, 0, 0, 0.6)' } }}>
-            <InputLabel id="width-label">Width in stitches</InputLabel>
+            <InputLabel id="width-label">width in stitches</InputLabel>
             <Select
             labelId="width-label"
             required
@@ -92,7 +96,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
             </Select>
           </FormControl>
           <FormControl fullWidth variant="standard" sx={{ '& .MuiSelect-select': { color: 'rgba(0, 0, 0, 0.6)' } }}>
-            <InputLabel id="height-label">Height in stitches</InputLabel>
+            <InputLabel id="height-label">height in stitches</InputLabel>
             <Select
             labelId="height-label"
             required
@@ -106,9 +110,11 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
             <MenuItem value={70}>70</MenuItem>
             <MenuItem value={80}>80</MenuItem>
             </Select>
-            <FormControlLabel control={<Checkbox checked={whiteBackground} onChange={event => setWhiteBackground(event.target.checked)}/>} label="Set white background"/>
+            <FormControlLabel sx={{color: '#666666', '& .MuiFormControlLabel-label': { fontSize: 14 }}}control={<Checkbox checked={whiteBackground} onChange={event => setWhiteBackground(event.target.checked)}/>} label="set white background"/>
           </FormControl>
-          <Button type="submit" variant="contained" sx={{ mt: 3, color: '#ffffff'}}>Generate</Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+          <Button type="submit" variant="contained" sx={{ color: '#ffffff'}}>generate</Button>
+          </Box>
         </form>
       </Paper>
   );
