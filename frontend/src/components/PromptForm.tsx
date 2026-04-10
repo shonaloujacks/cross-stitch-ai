@@ -17,7 +17,7 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
   const [height, setHeight] = useState(20);
   const [whiteBackground, setWhiteBackground] = useState(false);
 
-  const apiBaseURL = 'http://localhost:3001/api/generate'
+  const apiBaseURL = import.meta.env.VITE_API_URL
 
   const navigate = useNavigate()
   
