@@ -102,16 +102,20 @@ const PatternGrid = ({ pattern }: PatternGridProp) => {
 
   const navigate = useNavigate()
 
+  const cellSize = Math.min(15, Math.floor((window.innerWidth - 40) / pattern.width));
+
 return (
   <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20, flexDirection: 'column', alignItems:'center'}}>
-   <div style ={{
+    <div style ={{
     display: 'grid',
-    gridTemplateColumns: `repeat(${pattern.width}, 20px)`,
+    gridTemplateColumns: `repeat(${pattern.width}, ${cellSize}px)`,
+    width: `${pattern.width * cellSize}px`,
+    margin: '0 auto'
    }}>
     {pattern.grid.flat().map((cellValue, i) => (
       <div key={i} style={{
-        width: 20,
-        height: 20,
+        width: cellSize,
+        height: cellSize,
         backgroundColor: cellValue === -1 ? 'white' : pattern.palette[cellValue].color,
         border: '0.5px solid grey',
         display: 'flex',

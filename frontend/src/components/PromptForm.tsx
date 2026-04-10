@@ -64,10 +64,9 @@ const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
 
       <Paper elevation={3} sx={{ p: 2, mt: 1, maxWidth: 600, mx: 'auto'}}>
         <Typography variant="h5" color='#88c4a8d5' sx={{ letterSpacing: 2}}>describe the pattern you want to generate</Typography>
-        <Box sx={{ borderBottom: '2px dashed #88c4a8d5'}}>
-          <Typography color='#666666' sx={{ mt: 1.5, mb: 2}}>before you begin, <Link component={RouterLink} to='/guidance' underline='none' sx={{ color: '#88c4a8d5', fontWeight: 'bold', '&:hover': { color: '#666666'}}}>learn how to structure prompts</Link> to get the best output</Typography>
+        <Box sx={{ borderBottom: '2.5px dashed #88c4a8d5', mb: 1}}>
+          <Typography color='#666666' sx={{ mt: 1.5, mb: 2}}>before you begin, <Link component={RouterLink} to='/guidance' underline='none' sx={{ color: '#88c4a8d5', fontWeight: 'bold', '&:hover': { color: '#666666'}}}>learn how to structure your prompt</Link> to get the best output</Typography>
         </Box>
-        
         <form onSubmit={handleGenerate}>
           <TextField
           variant="standard"

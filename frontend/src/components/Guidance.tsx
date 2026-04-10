@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Box, Card, CardContent, CardMedia, Dialog, DialogContent, Paper, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Dialog, DialogContent, Paper, Typography } from '@mui/material';import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelSharpIcon from '@mui/icons-material/CancelSharp';
 
 import pizza from '../assets/images/pizza-box-with-background.jpg';
 import beach from '../assets/images/a-sandy-beach-with-a-deckchair-and-sea-in-the-background-clouds-sky.jpg';
@@ -18,6 +19,9 @@ import house from '../assets/images/historic-house-wysteria.jpg';
 import iceCream from '../assets/images/ice-cream-cone.jpg';
 import mouse from '../assets/images/white-mouse-wedge-cheese.jpg';
 import catFace from '../assets/images/the-face-of-a-tabby-cat-straight-on.jpg';
+import ladyBird from '../assets/images/ladybird.jpg'
+import lake from '../assets/images/lake.jpg'
+import superhero from '../assets/images/superhero.jpg'
 
 const examples = [
   { src: pizza,     prompt: 'a pizza box with a slice of pizza next to it on a table' },
@@ -37,23 +41,26 @@ const examples = [
   { src: iceCream,  prompt: 'a vanilla ice cream with rainbow sprinkles in a wafer cone' },
   { src: mouse,     prompt: 'a white mouse next to a wedge of cheese' },
   { src: catFace,   prompt: 'the face of a tabby cat, front-on view' },
+  { src: ladyBird,  prompt: 'a ladybird on a green leaf'},
+  { src: lake,      prompt: 'a tranquil lake with mountains in the background and a pale blue sky with clouds'},
+  { src: superhero, prompt: 'a female hero in red and blue with a gold cape and mask'}
 ];
 
 const dos = [
-  'Be explicit about composition — "side view", "front-on", "from above", "aerial"',
-  'Use smaller dimensions (20–30 stitches) for simple shapes with small colour palettes',
-  'Use larger dimensions (60+ stitches) for designs that need detail or a wider colour range',
-  'Specify colours for elements — "a red apple with a green leaf"',
-  'Use the white background option for subjects that benefit from a clean backdrop',
-  'Describe the subject clearly — the more specific, the better the result',
+  `use CrossStitchAi for simple patterns — it can't deal with complex designs and is not a replacement for the talents of human pattern makers`,
+  'be explicit about composition, ie. "side view", "front-on", "from above"',
+  'use smaller dimensions (20–30 stitches) for simple shapes with small colour palettes and larger dimensions (60+ stitches) for designs that need more detail or a wider colour range',
+  'specify any desired colours for elements: ie. "a red apple with a green leaf"',
+  'use the white background option for subjects that benefit from a clean backdrop',
+  'describe the subject clearly — the more specific, the better the result',
 ];
 
 const donts = [
-  'Use named copyrighted or trademarked characters — describe their appearance instead',
-  'Reference famous people or imagery that recalls their likeness',
-  'Include lewd, illegal, or offensive content or references',
-  'Expect fine detail at small dimensions — keep complex subjects to larger grids',
-  'Use vague prompts like "something nice" — specificity produces better patterns',
+  'include named, copyrighted or trademarked characters — describe their appearance instead, for example, replace "superhero" with a description such as "a hero in red and blue with a gold mask and cape"',
+  'use real brand logos or product packaging protected by trademarks',
+  'reference famous people or imagery that recalls their likeness',
+  'reference photorealistic depictions of real private individuals',
+  'include lewd, illegal or offensive content or references, including imagery that depicts hate symbols, drugs, criminality, gore or violence',
 ];
 
 const Guidance = () => {
@@ -65,13 +72,14 @@ const Guidance = () => {
         prompt guidance
       </Typography>
       <Typography variant="body1" sx={{ color: '#666', mb: 4 }}>
-        follow these tips to get the best results from your cross-stitch patterns
+        follow these tips and tricks to get the best results from CrossStitchAi
       </Typography>
 
       {/* Dos and Don'ts */}
       <Box sx={{ display: 'flex', gap: 3, mb: 6, flexDirection: { xs: 'column', md: 'row' } }}>
-        <Paper elevation={2} sx={{ flex: 1, p: 3, borderTop: '4px solid #88c4a8d5' }}>
-          <Typography variant="h6" sx={{ mb: 2, letterSpacing: 1 }}>dos</Typography>
+        <Paper elevation={2} sx={{ flex: 1, p: 3,  backgroundColor: '#fffef5', transform: 'rotate(0.5deg)' }}>
+          <Box sx={{ textAlign: 'center', mt: -1, mb: 1, fontSize: 20 }}>📌</Box>
+          <Typography variant="h5" sx={{ mb: 2, letterSpacing: 1 }}><CheckCircleIcon sx={{color:'#88c4a8d5'}}/>   do</Typography>
           <ul style={{ paddingLeft: 20, margin: 0 }}>
             {dos.map((item, i) => (
               <li key={i} style={{ marginBottom: 10, color: '#444', fontSize: 15 }}>{item}</li>
@@ -79,13 +87,15 @@ const Guidance = () => {
           </ul>
         </Paper>
 
-        <Paper elevation={2} sx={{ flex: 1, p: 3, borderTop: '4px solid #e07070' }}>
-          <Typography variant="h6" sx={{ mb: 2, letterSpacing: 1 }}>don'ts</Typography>
+        <Paper elevation={2} sx={{ flex: 1, p: 3,  backgroundColor: '#fffef5', transform: 'rotate(-0.5deg)' }}>
+          <Box sx={{ textAlign: 'center', mt: -1, mb: 1, fontSize: 20 }}>📌</Box>
+          <Typography variant="h5" sx={{ mb: 2, letterSpacing: 1 }}><CancelSharpIcon sx={{color: '#e07070'}}/>   don't</Typography>
           <ul style={{ paddingLeft: 20, margin: 0 }}>
             {donts.map((item, i) => (
               <li key={i} style={{ marginBottom: 10, color: '#444', fontSize: 15 }}>{item}</li>
             ))}
           </ul>
+          <Typography sx={{color: '#e07070', fontSize: 15, letterSpacing: 1, mt: 5 }}>prompts that use the above will be rejected by the generator</Typography>
         </Paper>
       </Box>
 
@@ -103,7 +113,7 @@ const Guidance = () => {
             key={i}
             elevation={3}
             onClick={() => setSelected(example)}
-            sx={{ cursor: 'pointer', '&:hover': { boxShadow: 8 } }}
+            sx={{ cursor: 'pointer', '&:hover': { boxShadow: 8 }, transform: `rotate(${i % 2 === 0 ? 1.5 : -1.5}deg)` }}
           >
             <CardMedia
               component="img"

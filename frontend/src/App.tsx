@@ -41,7 +41,7 @@ const App = () => {
         }}>
            <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25
             }}>
-            CrossStitch Ai
+            CrossStitchAi
            </Box>
            <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>
             <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60 }}>home</Link>
