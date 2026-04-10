@@ -8,9 +8,9 @@ import chilli from '../assets/images/chilli-pepper-lemon.jpg';
 import heart from '../assets/images/heart-surrounded-by-wreath-flowers.jpg';
 
 const images = [
-  { src: heart,   top: '5%',  left: '0%',  mobileLeft: '0%',  rotate: -6, hideOnMobile: false },
+  { src: heart,   top: '6%',  left: '0%',  mobileLeft: '0%',  rotate: -6, hideOnMobile: false },
   { src: pizza,   top: '13%', left: '15%', mobileLeft: '25%', rotate: 3,  hideOnMobile: false },
-  { src: cat,     top: '3%',  left: '30%', mobileLeft: '50%', rotate: -4, hideOnMobile: false },
+  { src: cat,     top: '5%',  left: '30%', mobileLeft: '50%', rotate: -4, hideOnMobile: false },
   { src: avocado, top: '12%', left: '43%', mobileLeft: '75%', rotate: 5,  hideOnMobile: false },
   { src: dog,     top: '4%',  left: '58%', mobileLeft: '60%', rotate: -3, hideOnMobile: true  },
   { src: chilli,  top: '13%', left: '70%', mobileLeft: '72%', rotate: 4,  hideOnMobile: true  },
