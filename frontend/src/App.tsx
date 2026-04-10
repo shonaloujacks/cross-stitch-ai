@@ -7,6 +7,7 @@ import PatternGrid from './components/PatternGrid';
 import NotificationBanner from './components/NotificationBanner';
 import HeroSection from './components/HeroSection';
 import Guidance from './components/Guidance';
+import About from './components/About';
 
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
       setNotification({ message: message, type: type })
       setTimeout(() => {
         setNotification({ message: '', type: '' })
-      }, 10000);
+      }, 15000);
   }
 
 
@@ -41,14 +42,14 @@ const App = () => {
         }}>
            <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25
             }}>
-            CrossStitchAi
+            CrossStitchAI
            </Box>
-           <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>
-            <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60 }}>home</Link>
-             <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>      
-            <Link to="/create-pattern" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60, marginLeft: 60 }}>create pattern</Link>
+           <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>     
+            <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60}}>create pattern</Link>
              <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>     
-            <Link to="/guidance" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginLeft: 60 }}>prompt guidance</Link>
+            <Link to="/guidance" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60, marginLeft: 60 }}>prompt guidance</Link>
+            <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>
+             <Link to="/about" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginLeft: 60 }}>about</Link>   
            </Box>
         </Box>
         
@@ -58,18 +59,17 @@ const App = () => {
           <>
             <HeroSection />
             {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', p: 3}}><CircularProgress/></Box>)}
-            {pattern && !isLoading && <PatternGrid pattern={pattern} /> }
+            {pattern && !isLoading && <PatternGrid pattern={pattern} setPattern={setPattern} /> }
             {!pattern && <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/>}
           </>
         } />
-        <Route path='/create-pattern' element={
+        <Route path='/guidance' element={<Guidance />}/>
+        <Route path ='/about' element={
           <>
-          <HeroSection />
-           {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', p: 3}}><CircularProgress/></Box>)}
-          <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/>
+            <HeroSection />
+            <About />
           </>
         }/>
-        <Route path='/guidance' element={<Guidance />}/>
       </Routes>
     </Router>
   )

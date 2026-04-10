@@ -1,10 +1,10 @@
 import type { Pattern } from "../types"
 import { Button, Box } from "@mui/material";
 import jsPDF from 'jspdf';    
-import { useNavigate } from "react-router";
 
 interface PatternGridProp {
   pattern: Pattern;
+  setPattern: React.Dispatch<React.SetStateAction<Pattern | null>>;
 };
 
   const downloadPattern = (pattern: Pattern) => {
@@ -96,11 +96,10 @@ interface PatternGridProp {
   };
 
 
-const PatternGrid = ({ pattern }: PatternGridProp) => {
+const PatternGrid = ({ pattern, setPattern }: PatternGridProp) => {
 
   console.log('this is pattern',pattern)
 
-  const navigate = useNavigate()
 
   const cellSize = Math.min(15, Math.floor((window.innerWidth - 40) / pattern.width));
 
@@ -151,7 +150,7 @@ return (
       <Button variant="contained" sx={{ mr: 1, color: '#ffffff'}} onClick={() => downloadPattern(pattern)}>
     download pattern
   </Button>
-  <Button variant="contained" sx={{ ml: 1, color: '#ffffff'}} onClick={() => navigate('/create-pattern')}>start over</Button>
+  <Button variant="contained" sx={{ ml: 1, color: '#ffffff'}} onClick={() => setPattern(null)}>start over</Button>
   </Box>
   </div>
 )

@@ -47,7 +47,7 @@ const examples = [
 ];
 
 const dos = [
-  `use CrossStitchAi for simple patterns — it can't deal with complex designs and is not a replacement for the talents of human pattern makers`,
+  `use CrossStitchAI for simple patterns — it can't deal with complex designs and is not a replacement for the talents of human pattern makers`,
   'be explicit about composition, ie. "side view", "front-on", "from above"',
   'use smaller dimensions (20–30 stitches) for simple shapes with small colour palettes and larger dimensions (60+ stitches) for designs that need more detail or a wider colour range',
   'specify any desired colours for elements: ie. "a red apple with a green leaf"',
@@ -72,30 +72,34 @@ const Guidance = () => {
         prompt guidance
       </Typography>
       <Typography variant="body1" sx={{ color: '#666', mb: 4 }}>
-        follow these tips and tricks to get the best results from CrossStitchAi
+        follow these tips and tricks to get the best results from CrossStitchAI
       </Typography>
 
       {/* Dos and Don'ts */}
       <Box sx={{ display: 'flex', gap: 3, mb: 6, flexDirection: { xs: 'column', md: 'row' } }}>
-        <Paper elevation={2} sx={{ flex: 1, p: 3,  backgroundColor: '#fffef5', transform: 'rotate(0.5deg)' }}>
-          <Box sx={{ textAlign: 'center', mt: -1, mb: 1, fontSize: 20 }}>📌</Box>
+        <Paper elevation={5} sx={{ flex: 1, p: 3 }}>
+          <Box sx={{ border: 'dashed 3px #88c4a8d5', p: 2 }}>
           <Typography variant="h5" sx={{ mb: 2, letterSpacing: 1 }}><CheckCircleIcon sx={{color:'#88c4a8d5'}}/>   do</Typography>
           <ul style={{ paddingLeft: 20, margin: 0 }}>
             {dos.map((item, i) => (
               <li key={i} style={{ marginBottom: 10, color: '#444', fontSize: 15 }}>{item}</li>
             ))}
           </ul>
+          </Box>
         </Paper>
 
-        <Paper elevation={2} sx={{ flex: 1, p: 3,  backgroundColor: '#fffef5', transform: 'rotate(-0.5deg)' }}>
-          <Box sx={{ textAlign: 'center', mt: -1, mb: 1, fontSize: 20 }}>📌</Box>
+        <Paper elevation={5} sx={{ flex: 1, p: 3 }}>
+          <Box sx={{ border: 'dashed 3px #88c4a8d5', p: 2 }}>
           <Typography variant="h5" sx={{ mb: 2, letterSpacing: 1 }}><CancelSharpIcon sx={{color: '#e07070'}}/>   don't</Typography>
           <ul style={{ paddingLeft: 20, margin: 0 }}>
             {donts.map((item, i) => (
               <li key={i} style={{ marginBottom: 10, color: '#444', fontSize: 15 }}>{item}</li>
             ))}
           </ul>
-          <Typography sx={{color: '#e07070', fontSize: 15, letterSpacing: 1, mt: 5 }}>prompts that use the above will be rejected by the generator</Typography>
+          <Box sx={{textAlign: 'center'}}>
+          <Typography sx={{color: '#e07070', fontSize: 16, letterSpacing: 1, mt: 5, ml: 2, mr: 2 }}>prompts that use the above will be rejected by the generator</Typography>
+          </Box>
+          </Box>
         </Paper>
       </Box>
 
