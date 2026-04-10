@@ -25,11 +25,14 @@ const findNearestDMC = (r: number, g: number, b: number) => {
   return nearest;
  }
 
+
 router.post('/', async (req, res) => {
   console.log('request received', req.body)
   const { finalPrompt, height, width } = req.body;
 
   let imageResponse;
+  const imageSize = width > height ? '1536x1024' : height > width ? '1024x1536' :        
+  '1024x1024';     
 
   try {
   imageResponse = await client.images.generate({
@@ -37,7 +40,7 @@ router.post('/', async (req, res) => {
   quality: 'medium',
   prompt: `A graphic illustration of ${finalPrompt}. Bold, solid color fills with subject centred. Use distinct, contrasting colors. For images with people, animals or food, use a cartoon style. Pay special attention to key features for animals and people, including eyes and nose. No decorative borders, no color swatches, no palette strips, no labels, no annotations`,
   n: 1,
-  size: '1024x1024'
+  size: imageSize
  });
   } catch (error: any) {
     if (error.status === 400 && error.code === 'content_policy_violation') {
@@ -61,7 +64,7 @@ router.post('/', async (req, res) => {
  // sharp resizes the images, removes Alpha channel (transparency) and extracts raw binary RGB pixls into a Buffer object
  
  const { data } = await sharp(buffer)
-  .resize(width, height, { fit: 'cover', kernel: sharp.kernel.nearest })
+  .resize(width, height, { fit: 'contain',  background: { r: 255, g: 255, b: 255 }, kernel: sharp.kernel.nearest })
   .sharpen({ sigma: 3 })
   .removeAlpha()
   .raw()
@@ -102,7 +105,7 @@ router.post('/', async (req, res) => {
   const isWhite = rgb[0] > 225 && rgb[1] > 225 && rgb[2] > 225;
   const symbol = isWhite ? 'X' : (symbols[symbolIndex++] ?? String(symbolIndex));
   return {
-   color: `#${toHex(rgb[0])}${toHex(rgb[1])}${toHex(rgb[2])}`,
+   color: isWhite ? '#ffffff' : `#${toHex(rgb[0])}${toHex(rgb[1])}${toHex(rgb[2])}`,
    symbol,
    name: dmc.description,
    dmcNumber: dmc.floss,
