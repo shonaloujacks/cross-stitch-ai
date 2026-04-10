@@ -38,7 +38,7 @@ const HeroSection = () => {
             left: { xs: img.mobileLeft, md: img.left },
             transform: `rotate(${img.rotate}deg)`,
             lineHeight: 0,
-            display: img.showOnLargeOnly ? { xs: 'none', lg: 'block' } : img.hideOnMobile ? { xs: 'none', md: 'block' } : 'block',
+            display: img.showOnLargeOnly ? { xs: 'none', xl: 'block' } : img.hideOnMobile ? { xs: 'none', md: 'block' } : 'block',
           }}
         >
           <img src={img.src} style={{ height: 250, display: 'block' }} />
