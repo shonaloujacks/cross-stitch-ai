@@ -33,12 +33,6 @@ const mobileImages = [
   { src: beach,   top: '5%',  left: '68%', rotate: 4 },
 ]
 
-const xsImages = [
-  { src: heart,   top: '4%',  left: '3%', rotate: 3  },
-  { src: avocado, top: '9%', left: '45%', rotate: -4 },
-
-]
-
 
 const HeroSection = () => {
 
@@ -46,10 +40,10 @@ const HeroSection = () => {
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('md'))
   const isXS = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
-  const activeImages = isXS ? xsImages : isMobile ? mobileImages : isTablet ? tabletImages : desktopImages
+  const activeImages = isXS ? mobileImages : isMobile ? mobileImages : isTablet ? tabletImages : desktopImages
 
   return (
-    <Box sx={{  overflow: 'hidden', position: 'relative', height: 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: isMobile? 2 : 10 }}>
+    <Box sx={{  overflow: 'hidden', position: 'relative', height: isXS ? 250 : 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: isMobile? 2 : 10 }}>
       {activeImages.map((img, i) => (
         <Paper
           key={i}
@@ -62,7 +56,7 @@ const HeroSection = () => {
             lineHeight: 0,
           }}
         >
-          <img src={img.src} style={{ height: 250, display: 'block' }} />
+          <img src={img.src} style={{ height: isXS ? 180 : 250, display: 'block' }} />
         </Paper>
       ))}
     </Box>
