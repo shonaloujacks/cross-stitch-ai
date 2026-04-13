@@ -48,7 +48,7 @@ const App = () => {
           px: 5,
           py: 1
         }}>
-          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: isMobile ? 5 : 25 , fontSize: 25 }}>
+          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, fontSize: 25 }}>
             <Link to="/" style={{ textDecoration: 'none',  color: '#333', fontWeight: 'normal'}} onClick={() => setMenuOpen(false)}>CrossStitchAI</Link>
           </Box>
         {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5'}}/>} 
@@ -60,12 +60,12 @@ const App = () => {
           <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
           <Link to="/about" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>about</Link> 
           </Paper> : null }
-        {!isMobile && <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>     
-          <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60}}>create pattern</Link>
+        {!isMobile && <Box sx={{ display: 'flex', gap: 10, letterSpacing: 4, justifyContent: 'center', flexGrow: 1}}>     
+          <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18}}>create pattern</Link>
           <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>     
-          <Link to="/guidance" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60, marginLeft: 60 }}>prompt guidance</Link>
+          <Link to="/guidance" style={{ textDecoration: 'none', color: '#333', fontSize: 18 }}>prompt guidance</Link>
           <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>
-          <Link to="/about" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginLeft: 60 }}>about</Link>   
+          <Link to="/about" style={{ textDecoration: 'none', color: '#333', fontSize: 18 }}>about</Link>   
           </Box>
           }
         </Box>
