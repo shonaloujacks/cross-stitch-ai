@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';   
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 import type { Pattern } from './types';
 import PromptForm from './components/PromptForm';
 import PatternGrid from './components/PatternGrid';
@@ -14,6 +15,8 @@ const App = () => {
   const [pattern, setPattern] = useState<Pattern | null >(null);
   const [isLoading, setIsLoading] = useState(false);
   const [notification, setNotification] = useState<{ message: string, type: 'error' | 'success' | ''}>({ message: '', type: ''})
+  const [menuOpen, setMenuOpen] = useState(false)
+
 
   const notify = (message: string, type: 'error' | 'success') => {
       setNotification({ message: message, type: type })
@@ -22,6 +25,11 @@ const App = () => {
       }, 15000);
   }
 
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('lg'))
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
 
   return (
     <Router>
@@ -29,29 +37,40 @@ const App = () => {
       <Box
         component='nav'
         sx={{
-          position: 'sticky',
+          position: 'relative',
           top: 0,
           zIndex: 1100,
           backgroundColor: 'white',
           borderBottom: '1px solid #eee',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: isMobile ? 'space-between' : 'flex-start',
           px: 5,
-          py: 1,
+          py: 1
         }}>
-           <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25
-            }}>
+          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25}}>
             CrossStitchAI
-           </Box>
-           <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>     
-            <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60}}>create pattern</Link>
-             <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>     
-            <Link to="/guidance" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60, marginLeft: 60 }}>prompt guidance</Link>
-            <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>
-             <Link to="/about" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginLeft: 60 }}>about</Link>   
-           </Box>
+          </Box>
+        {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5'}}/>} 
+        {isMobile && menuOpen ? 
+         <Box sx={{display: 'flex', flexDirection: 'column', position:'absolute', top: '100%', right: 0, backgroundColor: 'white', padding: 2, letterSpacing: 4, alignItems: 'center'}}> 
+          <Link to="/" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>create pattern</Link>
+          <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
+          <Link to="/guidance" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>prompt guidance</Link>
+          <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
+          <Link to="/about" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>about</Link> 
+          </Box> : null }
+        {!isMobile && <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>     
+          <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60}}>create pattern</Link>
+          <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>     
+          <Link to="/guidance" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60, marginLeft: 60 }}>prompt guidance</Link>
+          <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>
+          <Link to="/about" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginLeft: 60 }}>about</Link>   
+          </Box>
+          }
         </Box>
+    
+      
         
 
       <Routes>
