@@ -28,9 +28,9 @@ const tabletImages = [
 ]
 
 const mobileImages = [
-  { src: heart,   top: '4%',  left: '3%', rotate: 3  },
-  { src: avocado, top: '9%', left: '32%', rotate: -4 },
-  { src: beach,   top: '5%',  left: '68%', rotate: 4 },
+  { src: heart,   top: '4%',  left: '1.5%', rotate: 3  },
+  { src: avocado, top: '9%', left: '30%', rotate: -4 },
+  { src: beach,   top: '5%',  left: '67%', rotate: 6 },
 ]
 
 
@@ -56,7 +56,7 @@ const HeroSection = () => {
             lineHeight: 0,
           }}
         >
-          <img src={img.src} style={{ height: isXS ? 180 : 250, display: 'block' }} />
+          <img src={img.src} style={{ height: isXS ? 190 : 250, display: 'block' }} />
         </Paper>
       ))}
     </Box>
