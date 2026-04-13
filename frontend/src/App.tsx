@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';   
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import type { Pattern } from './types';
 import PromptForm from './components/PromptForm';
 import PatternGrid from './components/PatternGrid';
@@ -58,11 +58,11 @@ const App = () => {
         <Route path='/' element={
           <>
             <HeroSection />
-            {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', p: 3}}><CircularProgress/></Box>)}
+            {isLoading && (<Box><Box sx={{ display: 'flex', justifyContent: 'center', p: 3}}><CircularProgress/></Box><Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}><Typography style={{color:'#88c4a8d5'}}>Generating your pattern... this may take up to 30 seconds</Typography></Box></Box>)}
             {pattern && !isLoading && <PatternGrid pattern={pattern} setPattern={setPattern} /> }
             {!pattern && <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/>}
           </>
-        } />
+        } />s
         <Route path='/guidance' element={<Guidance />}/>
         <Route path ='/about' element={
           <>
