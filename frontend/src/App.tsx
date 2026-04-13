@@ -48,9 +48,10 @@ const App = () => {
           px: 5,
           py: 1
         }}>
-          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25 }}><Link to="/" style={{ textDecoration: 'none',  color: '#333', fontWeight: 'normal'}} onClick={() => setMenuOpen(false)}>CrossStitchAI</Link>
+          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25 }}>
+            <Link to="/" style={{ textDecoration: 'none',  color: '#333', fontWeight: 'normal'}} onClick={() => setMenuOpen(false)}>CrossStitchAI</Link>
           </Box>
-        {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5'}}/>} 
+        {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5', mr: 10}}/>} 
         {isMobile && menuOpen ? 
          <Paper elevation={12} sx={{display: 'flex', flexDirection: 'column', position:'absolute', top: '100%', right: 0, backgroundColor: 'white', padding: 2, letterSpacing: 4, alignItems: 'center'}}> 
           <Link to="/" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>create pattern</Link>
@@ -68,9 +69,6 @@ const App = () => {
           </Box>
           }
         </Box>
-    
-      
-        
 
       <Routes>
         <Route path='/' element={
@@ -80,7 +78,7 @@ const App = () => {
             {pattern && !isLoading && <PatternGrid pattern={pattern} setPattern={setPattern} /> }
             {!pattern && <PromptForm setPattern={setPattern} setIsLoading={setIsLoading} notify={notify}/>}
           </>
-        } />s
+        } />
         <Route path='/guidance' element={<Guidance />}/>
         <Route path ='/about' element={
           <>
