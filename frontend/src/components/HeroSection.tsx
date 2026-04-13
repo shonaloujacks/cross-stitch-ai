@@ -49,7 +49,7 @@ const HeroSection = () => {
   const activeImages = isXS ? xsImages : isMobile ? mobileImages : isTablet ? tabletImages : desktopImages
 
   return (
-    <Box sx={{ position: 'relative', height: 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: 10 }}>
+    <Box sx={{  overflow: 'hidden', position: 'relative', height: 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: isMobile? 2 : 10 }}>
       {activeImages.map((img, i) => (
         <Paper
           key={i}
