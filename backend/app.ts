@@ -1,6 +1,7 @@
 import express from 'express';
 import generateRouter from './routes/generate'
 import rateLimit from 'express-rate-limit';
+import router from './routes/generate';
 
 const app = express();
 app.set('trust proxy', 1)
@@ -19,4 +20,9 @@ app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https
 
 app.use('/api/generate', generateLimiter, generateRouter );
 
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok'
+  })
+})
 export default app;
