@@ -28,7 +28,7 @@ const tabletImages = [
 ]
 
 const mobileImages = [
-  { src: heart,   top: '4%',  left: '1.5%', rotate: 3  },
+  { src: heart,   top: '4%',  left: '2%', rotate: 3  },
   { src: avocado, top: '9%', left: '30%', rotate: -4 },
   { src: beach,   top: '5%',  left: '67%', rotate: 6 },
 ]
@@ -43,7 +43,7 @@ const HeroSection = () => {
   const activeImages = isXS ? mobileImages : isMobile ? mobileImages : isTablet ? tabletImages : desktopImages
 
   return (
-    <Box sx={{  overflow: 'hidden', position: 'relative', height: isXS ? 250 : 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: isMobile? 2 : 10 }}>
+    <Box sx={{  overflow: 'hidden', position: 'relative', height: isXS ? 220 : 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: isMobile? 2 : 10 }}>
       {activeImages.map((img, i) => (
         <Paper
           key={i}
@@ -56,7 +56,7 @@ const HeroSection = () => {
             lineHeight: 0,
           }}
         >
-          <img src={img.src} style={{ height: isXS ? 190 : 250, display: 'block' }} />
+          <img src={img.src} style={{ height: isXS ? 170 : 250, display: 'block' }} />
         </Paper>
       ))}
     </Box>
