@@ -21,7 +21,7 @@ const images = [
 
 const HeroSection = () => {
   return (
-    <Box sx={{ position: 'relative', height: 320, maxWidth: 1700, mx: 'auto', mt: 1.5 }}>
+    <Box sx={{ position: 'relative', height: 320, maxWidth: 1700, mx: 'auto', mt: 1.5, mb: 10 }}>
       {images.map((img, i) => (
         <Paper
           key={i}

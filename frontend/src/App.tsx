@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';   
-import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';   
+import { Box, CircularProgress, Typography, useMediaQuery, Paper } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import type { Pattern } from './types';
 import PromptForm from './components/PromptForm';
@@ -48,18 +48,17 @@ const App = () => {
           px: 5,
           py: 1
         }}>
-          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25}}>
-            CrossStitchAI
+          <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, mr: 25, fontSize: 25 }}><Link to="/" style={{ textDecoration: 'none',  color: '#333', fontWeight: 'normal'}} onClick={() => setMenuOpen(false)}>CrossStitchAI</Link>
           </Box>
         {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5'}}/>} 
         {isMobile && menuOpen ? 
-         <Box sx={{display: 'flex', flexDirection: 'column', position:'absolute', top: '100%', right: 0, backgroundColor: 'white', padding: 2, letterSpacing: 4, alignItems: 'center'}}> 
+         <Paper elevation={12} sx={{display: 'flex', flexDirection: 'column', position:'absolute', top: '100%', right: 0, backgroundColor: 'white', padding: 2, letterSpacing: 4, alignItems: 'center'}}> 
           <Link to="/" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>create pattern</Link>
           <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
           <Link to="/guidance" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>prompt guidance</Link>
           <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
           <Link to="/about" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>about</Link> 
-          </Box> : null }
+          </Paper> : null }
         {!isMobile && <Box sx={{ display: 'flex', gap: 3, letterSpacing: 4, alignItems: 'center'}}>     
           <Link to="/" style={{ textDecoration: 'none', color: '#333', fontSize: 18, marginRight: 60}}>create pattern</Link>
           <span style={{ color: '#88c4a8d5', fontSize: 24 }}>✕</span>     
