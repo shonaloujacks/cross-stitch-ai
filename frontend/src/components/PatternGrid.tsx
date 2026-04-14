@@ -109,7 +109,9 @@ return (
     display: 'grid',
     gridTemplateColumns: `repeat(${pattern.width}, ${cellSize}px)`,
     width: `${pattern.width * cellSize}px`,
-    margin: '0 auto'
+    margin: '0 auto',
+    borderLeft: '1px solid #aaa',
+    borderTop: '1px solid #aaa',
    }}>
     {pattern.grid.flat().map((cellValue, i) => (
       <div key={i} style={{
@@ -119,7 +121,8 @@ return (
         fontSize: cellSize * 0.7,
         color: 'black',
         backgroundColor: cellValue === -1 ? 'white' : pattern.palette[cellValue].color,
-        border: '0.5px solid grey',
+        borderRight: '1px solid #aaa',
+        borderBottom: '1px solid #aaa',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -139,7 +142,7 @@ return (
             height: 20,
             fontSize: cellSize * 0.7,
             backgroundColor: palette.color,
-            border: '0.5px solid grey', 
+            border: '1px solid #aaa',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
