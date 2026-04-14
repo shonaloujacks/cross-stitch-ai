@@ -101,7 +101,7 @@ const PatternGrid = ({ pattern, setPattern }: PatternGridProp) => {
   console.log('this is pattern',pattern)
 
 
-  const cellSize = Math.min(15, Math.floor((window.innerWidth - 40) / pattern.width));
+  const cellSize = Math.min(15, Math.floor((window.innerWidth - 20) / pattern.width));
 
 return (
   <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20, flexDirection: 'column', alignItems:'center'}}>
@@ -115,6 +115,7 @@ return (
       <div key={i} style={{
         width: cellSize,
         height: cellSize,
+        lineHeight: 1,
         fontSize: cellSize * 0.7,
         color: 'black',
         backgroundColor: cellValue === -1 ? 'white' : pattern.palette[cellValue].color,
