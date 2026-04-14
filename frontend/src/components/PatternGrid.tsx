@@ -115,11 +115,14 @@ return (
       <div key={i} style={{
         width: cellSize,
         height: cellSize,
+        fontSize: cellSize * 0.7,
+        color: 'black',
         backgroundColor: cellValue === -1 ? 'white' : pattern.palette[cellValue].color,
         border: '0.5px solid grey',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'hidden',
       }}>
         {cellValue === -1 ? '' : pattern.palette[cellValue].symbol}
       </div>
@@ -133,11 +136,14 @@ return (
           <div style={{
             width: 20,
             height: 20,
+            fontSize: cellSize * 0.7,
             backgroundColor: palette.color,
             border: '0.5px solid grey', 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            overflow: 'hidden',
+            color: 'black'
           }}>
             {palette.symbol}
           </div> 
