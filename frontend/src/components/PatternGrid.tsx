@@ -108,7 +108,7 @@ return (
     <div style ={{
     display: 'grid',
     gridTemplateColumns: `repeat(${pattern.width}, ${cellSize}px)`,
-    width: `${pattern.width * cellSize + pattern.width + 1}px`,
+    width: `${pattern.width * cellSize + pattern.width - 1}px`,
     margin: '0 auto',
     backgroundColor: '#aaa',
     gap: '1px',
