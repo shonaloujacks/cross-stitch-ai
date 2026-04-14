@@ -67,6 +67,7 @@ router.post('/', async (req, res) => {
   .resize(width, height, { fit: 'contain',  background: { r: 255, g: 255, b: 255 }, kernel: sharp.kernel.nearest })
   .sharpen({ sigma: 3 })
   .removeAlpha()
+  .toColorspace('srgb')
   .raw()
   .toBuffer({ resolveWithObject: true });
 
@@ -94,8 +95,8 @@ router.post('/', async (req, res) => {
  const palette = colorMap.palette();
 
  const toHex = (n: number) => Math.min(255, Math.max(0, n)).toString(16).padStart(2, '0')
-
- const symbols = ['★','●','■','◆','✿','❤','✦','▶','✚','☽','☀','♦','✖','⬟','❋','⬡'];
+ 
+ const symbols = ['★\uFE0E','●\uFE0E','■\uFE0E','◆\uFE0E','✿\uFE0E','❤\uFE0E','✦\uFE0E','▶\uFE0E','✚\uFE0E','☽\uFE0E','☀\uFE0E','♦\uFE0E','✖\uFE0E','⬟\uFE0E','❋\uFE0E','⬡\uFE0E'];
 
  // map through palette to find the nearest DMC colors for each palette color and assign symbols
 
