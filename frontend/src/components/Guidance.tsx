@@ -47,12 +47,11 @@ const examples = [
 ];
 
 const dos = [
-  `use CrossStitchAI for simple patterns — it can't deal with complex designs and is not a replacement for the talents of human pattern makers`,
-  'be explicit about composition, ie. "side view", "front-on", "from above"',
-  'use smaller dimensions (20–30 stitches) for simple shapes with small colour palettes and larger dimensions (60+ stitches) for designs that need more detail or a wider colour range',
+  `use CrossStitchAI for simple patterns — it can't deal with complex designs or lettering and is not a replacement for the talents of human pattern makers`,
+  `opt for a broader prompt, ie. "a golden dragon", if you have a basic idea but no specific pattern in mind`,
+  `describe the subject clearly and in detail if you have a specific pattern in mind, including composition if relevant ("side view", "front-on", "from above", etc)`,
+  'use smaller dimensions (20–40 stitches) for simple shapes with small colour palettes, and larger dimensions (50-80 stitches) for designs that need more detail or a wider colour range',
   'specify any desired colours for elements: ie. "a red apple with a green leaf"',
-  'use the white background option for subjects that benefit from a clean backdrop',
-  'describe the subject clearly — the more specific, the better the result',
 ];
 
 const donts = [
@@ -97,7 +96,7 @@ const Guidance = () => {
             ))}
           </ul>
           <Box sx={{textAlign: 'center'}}>
-          <Typography sx={{color: '#e07070', fontSize: 16, letterSpacing: 1, mt: 5, ml: 2, mr: 2 }}>prompts that use the above will be rejected by the generator</Typography>
+          <Typography sx={{color: '#e07070', fontSize: 16, letterSpacing: 1, mt: 1, ml: 2, mr: 2 }}>prompts that use the above will be rejected by the generator</Typography>
           </Box>
           </Box>
         </Paper>

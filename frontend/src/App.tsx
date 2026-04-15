@@ -54,12 +54,22 @@ const App = () => {
         {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5'}}/>} 
         {isMobile && menuOpen ? 
         <ClickAwayListener onClickAway={() => setMenuOpen(false)}>
-         <Paper elevation={12} sx={{display: 'flex', flexDirection: 'column', position:'absolute', top: '100%', right: 0, backgroundColor: 'white', padding: 2, letterSpacing: 4, alignItems: 'center'}}> 
-          <Link to="/" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>create pattern</Link>
-          <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
-          <Link to="/guidance" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>prompt guidance</Link>
-          <span style={{ color: '#88c4a8d5', fontSize: 18 }}>✕</span>    
-          <Link to="/about" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>about</Link> 
+         <Paper elevation={12} sx={{display: 'flex', flexDirection: 'column', position:'absolute', top: '100%', right: 0, backgroundColor: 'white', padding: 2, letterSpacing: 4, alignItems: 'flex-start', gap: 2}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+            <span style={{ color: '#88c4a8d5', fontSize: 16 }}>✕ </span>
+            <Link to="/" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>create pattern</Link> 
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+            <span style={{ color: '#88c4a8d5', fontSize: 16 }}>✕ </span>
+            <Link to="/guidance" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>prompt guidance</Link>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+            <span style={{ color: '#88c4a8d5', fontSize: 16 }}>✕ </span>
+            <Link to="/about" onClick={() => setMenuOpen(false)} style={{ color: '#333', padding: 4 }}>about</Link> 
+          </Box>
+          
+           
+         
           </Paper>
           </ClickAwayListener>
            : null }

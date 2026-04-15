@@ -14,8 +14,9 @@ interface PatternGridProp {
     const gridHeight = pattern.height * cellSize;
     const keyItemHeight = 28;
     const keySectionHeight = pattern.palette.length * keyItemHeight + 30;
+    const patternMeasurementsHeight = 20
     const canvasWidth = Math.max(pattern.width * cellSize, 300) + padding * 2;
-    const canvasHeight = padding + titleHeight + gridHeight + padding + keySectionHeight + padding;
+    const canvasHeight = padding + titleHeight + gridHeight + padding + keySectionHeight + patternMeasurementsHeight + padding;
 
     const canvas = document.createElement('canvas');
     canvas.width = canvasWidth;
@@ -27,6 +28,7 @@ interface PatternGridProp {
 
     // Splice title
     const patternTitle = pattern.title.replace(' on a plain white #ffffff background', '')
+    const patternDimensions = 'Pattern height: ' + pattern.height + ' stitches.' + ' Pattern width: ' + pattern.width + ' stiches'
 
     // Draw title
     ctx.fillStyle = 'black';
@@ -86,6 +88,15 @@ interface PatternGridProp {
       ctx.textAlign = 'left';
       ctx.fillText(`${entry.name}  —  DMC: ${entry.dmcNumber}`, padding + cellSize + 8, y + cellSize / 2);
     });
+
+    // dimensions box
+    const patternMeasurements = keyOffsetY + keySectionHeight
+    ctx.fillStyle = 'black';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(patternDimensions, padding, patternMeasurements);
+
 
     // Trigger the download
      const imgData = canvas.toDataURL('image/png');           
