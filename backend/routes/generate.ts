@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
   imageResponse = await client.images.generate({
   model: 'gpt-image-1',
   quality: 'medium',
-  prompt: `A graphic illustration of ${finalPrompt}. Bold, solid color fills with subject centred. Use distinct, contrasting colors. For images with people, animals or food, use a cartoon style. Pay special attention to key features for animals and people, including eyes and nose. No decorative borders, no color swatches, no palette strips, no labels, no annotations`,
+  prompt: `A graphic illustration of ${finalPrompt}. Bold, solid color fills with subject centred. Use distinct, contrasting colors. For images with people, animals or food, use a cartoon style. Pay special attention to key features for animals and people, including the whites of eyes. No decorative borders, no color swatches, no palette strips, no labels, no annotations`,
   n: 1,
   size: imageSize
  });
