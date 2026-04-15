@@ -13,6 +13,7 @@ const generateLimiter = rateLimit({
   message: { error: 'rate_limit_exceeded', message: 'Too many requests, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { trustProxy: process.env.NODE_ENV === 'production'} 
 })
 
 app.use(express.json());
