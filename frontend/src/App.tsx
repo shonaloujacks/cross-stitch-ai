@@ -22,7 +22,7 @@ const App = () => {
       setNotification({ message: message, type: type })
       setTimeout(() => {
         setNotification({ message: '', type: '' })
-      }, 15000);
+      }, 10000);
   }
 
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('lg'))
