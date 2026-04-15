@@ -4,7 +4,7 @@ import rateLimit from 'express-rate-limit';
 import router from './routes/generate';
 
 const app = express();
-app.set('trust proxy', 1)
+app.set('trust proxy', true)
 const cors = require('cors');
 
 const generateLimiter = rateLimit({
