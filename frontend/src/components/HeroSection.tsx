@@ -9,10 +9,10 @@ import heart from '../assets/images/heart-surrounded-by-wreath-flowers.jpg';
 
 
 const desktopImages = [
-  { src: heart,   top: '6%',  left: '0%',  rotate: -6 },
-  { src: pizza,   top: '13%', left: '15%', rotate: 3  },
-  { src: cat,     top: '5%',  left: '30%', rotate: -4 },
-  { src: avocado, top: '12%', left: '43%', rotate: 5 },
+  { src: heart,   top: '6%',  left: '1%',  rotate: -6 },
+  { src: pizza,   top: '13%', left: '14%', rotate: 3  },
+  { src: cat,     top: '5%',  left: '29%', rotate: -4 },
+  { src: avocado, top: '12%', left: '42%', rotate: 5 },
   { src: dog,     top: '4%',  left: '58%', rotate: -3 },
   { src: chilli,  top: '13%', left: '70%', rotate: 4 },
   { src: beach,   top: '5%',  left: '86%', rotate: -5 },
