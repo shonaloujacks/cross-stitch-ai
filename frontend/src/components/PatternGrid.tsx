@@ -115,7 +115,7 @@ const PatternGrid = ({ pattern, setPattern }: PatternGridProp) => {
   const cellSize = Math.min(15, Math.floor((window.innerWidth - 20) / pattern.width));
 
 return (
-  <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20, flexDirection: 'column', alignItems:'center'}}>
+  <div data-testid="pattern-grid" style={{ display: 'flex', justifyContent: 'center', marginTop: 20, flexDirection: 'column', alignItems:'center'}}>
     <div style ={{
     display: 'grid',
     gridTemplateColumns: `repeat(${pattern.width}, ${cellSize}px)`,
