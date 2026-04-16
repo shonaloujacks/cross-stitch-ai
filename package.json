@@ -4,5 +4,10 @@
     "axios": "^1.13.6",
     "cors": "^2.8.6",
     "dmc": "^1.5.2"
-  }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  },
+  "scripts": {}
 }
