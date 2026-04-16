@@ -167,7 +167,7 @@ return (
         </ul>
       </div>
       <Box sx={{ padding: 2}}> 
-      <Button variant="contained" sx={{ mr: 1, color: '#ffffff'}} onClick={() => downloadPattern(pattern)}>
+      <Button data-testid="download-button" variant="contained" sx={{ mr: 1, color: '#ffffff'}} onClick={() => downloadPattern(pattern)}>
     download pattern
   </Button>
   <Button variant="contained" sx={{ ml: 1, color: '#ffffff'}} onClick={() => setPattern(null)}>start over</Button>

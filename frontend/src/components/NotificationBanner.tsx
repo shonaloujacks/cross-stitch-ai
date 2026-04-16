@@ -7,7 +7,7 @@ const NotificationBanner = ({notification}: NotificationProps) => {
 
 
   return (
-  <div style={{ position: 'fixed', left: 0, right: 0, top: 0, zIndex: 1300}}>
+  <div data-testid="notification-banner" style={{ position: 'fixed', left: 0, right: 0, top: 0, zIndex: 1300}}>
 
       {notification.type === 'error' &&
       <Alert severity="error">{notification.message}</Alert>}
