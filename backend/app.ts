@@ -9,7 +9,7 @@ const cors = require('cors');
 
 const generateLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
-  max: 10,
+  max: process.env.NODE_ENV === 'production' ? 10 : (process.env.TEST_RATE_LIMIT ? 3 : 1000),
   message: { error: 'rate_limit_exceeded', message: 'Too many requests, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
