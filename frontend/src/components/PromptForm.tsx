@@ -13,8 +13,8 @@ interface PromptFormProps {
 
 const PromptForm = ({ setPattern, setIsLoading, notify }: PromptFormProps) => {
   const [prompt, setPrompt] = useState('');
-  const [width, setWidth] = useState(20)
-  const [height, setHeight] = useState(20);
+  const [width, setWidth] = useState(50)
+  const [height, setHeight] = useState(50);
   const [whiteBackground, setWhiteBackground] = useState(false);
 
   const apiBaseURL = import.meta.env.VITE_API_URL

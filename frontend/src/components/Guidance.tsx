@@ -96,7 +96,7 @@ const Guidance = () => {
             ))}
           </ul>
           <Box sx={{textAlign: 'center'}}>
-          <Typography sx={{color: '#e07070', fontSize: 16, letterSpacing: 1, mt: 1, ml: 2, mr: 2 }}>prompts that use the above will be rejected by the generator</Typography>
+          <Typography sx={{color: '#e07070', fontSize: 16, letterSpacing: 1, mt: 1, ml: 2, mr: 2 }}>prompts that use the above may be rejected by the generator</Typography>
           </Box>
           </Box>
         </Paper>
