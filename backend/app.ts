@@ -17,7 +17,7 @@ const generateLimiter = rateLimit({
 })
 
 app.use(express.json());
-app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://cross-stitch-ai.pages.dev']}));
+app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://cross-stitch-ai.com']}));
 
 app.use('/api/generate', generateLimiter, generateRouter );
 
