@@ -1,5 +1,7 @@
 CrossStitchAI is a streamlined cross-stitch pattern generator powered by OpenAI's gpt-image-1 LLM that transforms text prompts into charted patterns, complete with DMC colour keys.
 
+CrossStitchAI is best at generating simple, flat patterns — it can't deal with complex designs or lettering and is not a replacement for the talents of human pattern makers.
+
 # How to use CrossStitchAI
 
 ## 1. Enter a prompt in the input box and set the pattern size
@@ -7,8 +9,6 @@ CrossStitchAI is a streamlined cross-stitch pattern generator powered by OpenAI'
 Before you submit your prompt, check out the [prompt guidance](https://cross-stitch-ai.pages.dev/guidance) for tips and tricks to get the best results from CrossStitchAI, plus example prompts and patterns.
 
 Use smaller dimensions (20–40 stitches) for basic shapes with small colour palettes, and larger dimensions (50-80 stitches) for designs that need more detail or a wider colour range.
-
-CrossStitchAI is best at generating simple, flat patterns — it can't deal with complex designs or lettering and is not a replacement for the talents of human pattern makers.
 
 ![CrossStitchAI screenshot 1](frontend/src/assets/images/cross-stitch-ai-screenshot-1.jpg)
 ![CrossStitchAI screenshot 2](frontend/src/assets/images/cross-stitch-ai-screenshot-5.jpg)
