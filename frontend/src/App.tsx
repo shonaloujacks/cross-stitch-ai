@@ -31,6 +31,12 @@ const App = () => {
     setMenuOpen(!menuOpen)
   }
 
+  const handleMenuClick = () => {
+    setMenuOpen(false)
+    setPattern(null)
+
+  }
+
   return (
     <Router>
       {notification.message && <NotificationBanner notification={notification}/>}
@@ -49,7 +55,7 @@ const App = () => {
           py: 1
         }}>
           <Box sx={{ border: '3px dashed #88c4a8d5', letterSpacing: 2, px: 1.5, py: 0.5, borderRadius: 1, fontSize: 25 }}>
-            <Link to="/" style={{ textDecoration: 'none',  color: '#333', fontWeight: 'normal'}} onClick={() => setMenuOpen(false)}>CrossStitchAI</Link>
+            <Link to="/" style={{ textDecoration: 'none',  color: '#333', fontWeight: 'normal'}} onClick={handleMenuClick}>CrossStitchAI</Link>
           </Box>
         {isMobile && <MenuIcon onClick={toggleMenu} sx={{color: '#88c4a8d5'}}/>} 
         {isMobile && menuOpen ? 
